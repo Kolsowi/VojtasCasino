@@ -1,0 +1,25 @@
+body {
+    max-width: 640px;
+    margin: 40px auto;
+    padding: 0 16px;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+}
+
+#reels {
+    display: flex;
+    gap: 16px;
+    font-size: 48px;
+}
+
+input,
+button {
+    padding: 8px;
+    font: inherit;
+}
