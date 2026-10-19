@@ -1,6 +1,6 @@
 # Vojtas Casino
 
-Podstawowy automat do gry za fikcyjne żetony.
+Projekt kasyna za fikcyjne żetony.
 
 - `index.html` zawiera strukturę strony.
 - `style.css` zawiera proste style.
