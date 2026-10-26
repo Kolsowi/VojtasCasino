@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Prosty automat do gry za fikcyjne żetony.">
+    <title>Vojtas Casino</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="casino-shell">
+        <header class="casino-header">
+            <div>
+                <div class="brand-row">
+                    <p class="eyebrow"><a class="casino-logo" href="index.html">Vojtas Casino</a></p>
+                    <time id="casino-clock" class="casino-clock" aria-label="Aktualna godzina">00:00:00</time>
+                </div>
+                <h1>Automat klasyczny</h1>
+            </div>
+            <div class="balance-box" aria-label="Aktualne saldo">
+                <span>Saldo</span>
+                <strong><span id="balance">1 000</span> <small>żetonów</small></strong>
+            </div>
+        </header>
+
+        <main class="game-panel">
+            <div class="machine-topline">
+                <span>Lucky 3</span>
+            </div>
+
+            <div id="reels" class="reels" aria-label="Wynik losowania">
+                <span>🍒</span>
+                <span>🍋</span>
+                <span>🍇</span>
+            </div>
+
+            <div class="controls">
+                <div class="bet-field">
+                    <label for="bet">Wysokość zakładu</label>
+                    <div class="input-wrap">
+                        <input id="bet" type="number" min="10" step="10" value="10">
+                        <span>żetonów</span>
+                    </div>
+                </div>
+                <button id="spin" type="button">Zakręć</button>
+            </div>
+
+            <p id="message" class="message" aria-live="polite">Trzy symbole wygrywają 5x, para 2x.</p>
+        </main>
+    </div>
+    <div id="celebration" aria-hidden="true"></div>
+</body>
+</html>

@@ -1,25 +1,369 @@
+:root {
+    --ink: #161514;
+    --paper: #f3f0e8;
+    --red: #b62b2b;
+    --gold: #d5a43a;
+    --green: #1d5b46;
+}
+
+* { box-sizing: border-box; }
+
 body {
-    max-width: 640px;
-    margin: 40px auto;
-    padding: 0 16px;
-    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    padding: 32px 16px;
+    color: var(--ink);
+    font-family: Georgia, "Times New Roman", serif;
+    background-color: #0b6b43;
+    background-image:
+        repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 3px),
+        repeating-linear-gradient(90deg, rgba(0,0,0,.04) 0 1px, transparent 1px 3px),
+        radial-gradient(circle at 50% 20%, #159b61 0, #0b6b43 68%, #07462f 100%);
 }
 
-header {
+button, input { font: inherit; }
+
+.casino-shell {
+    width: min(680px, 100%);
+    margin: 0 auto;
+}
+
+.casino-header {
     display: flex;
-    align-items: baseline;
+    align-items: flex-end;
     justify-content: space-between;
-    border-bottom: 1px solid #ccc;
+    gap: 24px;
+    margin-bottom: 18px;
+    color: var(--paper);
 }
 
-#reels {
+.eyebrow {
+    margin: 0 0 4px;
+    color: var(--gold);
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.brand-row {
     display: flex;
-    gap: 16px;
-    font-size: 48px;
+    align-items: center;
+    gap: 12px;
 }
 
-input,
-button {
-    padding: 8px;
-    font: inherit;
+.brand-row .eyebrow { margin-bottom: 4px; }
+
+.casino-clock {
+    color: #ffe187;
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+}
+
+.casino-logo {
+    color: inherit;
+    text-decoration: none;
+}
+
+.casino-logo:hover,
+.casino-logo:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+h1 {
+    margin: 0;
+    font-size: clamp(26px, 6vw, 42px);
+    line-height: 1;
+}
+
+.balance-box {
+    flex: 0 0 auto;
+    min-width: 150px;
+    padding-left: 18px;
+    border-left: 1px solid rgba(243, 240, 232, .25);
+}
+
+.balance-box > span {
+    display: block;
+    margin-bottom: 3px;
+    color: #b7b3aa;
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.balance-box strong { font-size: 24px; }
+.balance-box small {
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.game-panel {
+    overflow: hidden;
+    border: 1px solid #b9aa7c;
+    border-radius: 8px;
+    background: var(--paper);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, .35);
+}
+
+.machine-topline {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 18px;
+    border-bottom: 1px solid #d5cfbf;
+    color: #706d65;
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.status-dot::before {
+    content: "";
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin-right: 7px;
+    border-radius: 50%;
+    background: var(--green);
+}
+
+.reels {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(8px, 2vw, 14px);
+    margin: 24px;
+    padding: clamp(12px, 3vw, 22px);
+    border: 8px solid var(--gold);
+    background: #ddd6c6;
+    box-shadow: inset 0 0 0 2px #8e701f;
+}
+
+.reels span {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1 / 1.1;
+    border: 1px solid #c7bfac;
+    background: #fffdf7;
+    font-size: clamp(42px, 12vw, 76px);
+    box-shadow: inset 0 -8px 16px rgba(53, 45, 31, .08);
+}
+
+.reels.spinning span {
+    opacity: .35;
+    filter: grayscale(.35);
+}
+
+.controls {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 170px;
+    gap: 18px;
+    align-items: end;
+    padding: 0 24px 20px;
+}
+
+.bet-field label {
+    display: block;
+    margin-bottom: 7px;
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.input-wrap {
+    display: flex;
+    align-items: center;
+    height: 48px;
+    border: 1px solid #aaa391;
+    background: #fff;
+}
+
+.input-wrap input {
+    min-width: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0 14px;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    font-size: 19px;
+}
+
+.input-wrap span {
+    padding-right: 14px;
+    color: #777268;
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 12px;
+}
+
+#spin {
+    height: 48px;
+    border: 0;
+    border-bottom: 4px solid #7d1919;
+    border-radius: 5px;
+    color: white;
+    background: var(--red);
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#spin:active {
+    border-bottom-width: 1px;
+    transform: translateY(3px);
+}
+
+.message {
+    min-height: 46px;
+    margin: 0;
+    padding: 14px 24px;
+    border-top: 1px solid #d5cfbf;
+    color: #504d46;
+    font-size: 15px;
+}
+
+.disclaimer {
+    margin: 14px 0 0;
+    color: #aaa69d;
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 11px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+body:has(.lobby-shell) {
+    background-color: #0b6b43;
+}
+
+.lobby-shell { width: min(900px, 100%); }
+
+.lobby-header { margin-bottom: 22px; }
+
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.game-card {
+    overflow: hidden;
+    border: 1px solid rgba(213, 164, 58, .75);
+    border-radius: 8px;
+    background: var(--paper);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, .28);
+}
+
+.game-card-art {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 22px;
+    border-bottom: 1px solid #d5cfbf;
+    background: #ddd6c6;
+}
+
+.game-card-art span {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1;
+    border: 4px solid var(--gold);
+    border-radius: 4px;
+    background: #fffdf7;
+    font-size: clamp(38px, 8vw, 64px);
+}
+
+.game-card-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 105px;
+    padding: 18px;
+}
+
+.game-card-body h2,
+.game-card-body p { margin: 0; }
+
+.game-card-body h2 { font-size: 27px; }
+
+.game-type {
+    margin-bottom: 4px !important;
+    color: #777268;
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.play-button {
+    flex: 0 0 auto;
+    padding: 12px 18px;
+    border-bottom: 3px solid #7d1919;
+    border-radius: 5px;
+    color: white;
+    background: var(--red);
+    font-family: "Trebuchet MS", sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.game-card-coming-soon { opacity: .68; }
+.game-card-coming-soon .game-card-art span { font-family: Georgia, serif; color: #777268; }
+.coming-soon { font-family: "Trebuchet MS", sans-serif; font-size: 12px; }
+
+#celebration {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.confetti {
+    position: absolute;
+    top: -24px;
+    width: 9px;
+    height: 16px;
+    border-radius: 2px;
+    animation: confetti-fall var(--fall-duration) linear forwards;
+}
+
+@keyframes confetti-fall {
+    to {
+        transform: translate(var(--drift), 105vh) rotate(var(--spin));
+    }
+}
+
+.message.win {
+    color: #165d43;
+    font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .confetti { display: none; }
+}
+
+@media (max-width: 520px) {
+    body { padding: 22px 12px; }
+    .casino-header { align-items: center; }
+    .game-grid { grid-template-columns: 1fr; }
+    .balance-box {
+        min-width: 118px;
+        padding-left: 12px;
+    }
+    .balance-box strong { font-size: 20px; }
+    .balance-box small { display: block; }
+    .reels {
+        margin: 14px;
+        border-width: 6px;
+    }
+    .controls {
+        grid-template-columns: 1fr;
+        padding: 0 14px 16px;
+    }
+    .message { padding-inline: 14px; }
 }

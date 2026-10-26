@@ -3,31 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Prosty automat do gry za fikcyjne żetony.">
+    <meta name="description" content="Lobby kasyna Vojtas Casino z fikcyjnymi żetonami.">
     <title>Vojtas Casino</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
 <body>
-    <header>
-        <h1>Vojtas Casino</h1>
-        <p>Saldo: <strong id="balance">1 000</strong> żetonów</p>
-    </header>
+    <div class="casino-shell lobby-shell">
+        <header class="casino-header lobby-header">
+            <div>
+                <div class="brand-row">
+                    <p class="eyebrow">Vojtas Casino</p>
+                    <time id="casino-clock" class="casino-clock" aria-label="Aktualna godzina">00:00:00</time>
+                </div>
+                <h1>Lobby</h1>
+            </div>
+            <div class="balance-box" aria-label="Saldo na stronie głównej">
+                <span>Saldo</span>
+                <strong>1 000 <small>żetonów</small></strong>
+            </div>
+        </header>
 
-    <main>
-        <h2>Automat</h2>
-        <p id="reels" aria-label="Wynik losowania">
-            <span>🍒</span>
-            <span>🍋</span>
-            <span>🍇</span>
-        </p>
+        <main>
+            <section class="game-grid" aria-label="Lista dostępnych automatów">
+                <article class="game-card">
+                    <div class="game-card-art" aria-hidden="true">
+                        <span>🍒</span><span>🍀</span><span>⭐</span>
+                    </div>
+                    <div class="game-card-body">
+                        <div>
+                            <p class="game-type">Automat 3-bębnowy</p>
+                            <h2>Lucky 3</h2>
+                        </div>
+                        <a class="play-button" href="slot.html">Zagraj</a>
+                    </div>
+                </article>
 
-        <label for="bet">Zakład:</label>
-        <input id="bet" type="number" min="10" step="10" value="10">
-        <button id="spin" type="button">Zakręć</button>
-
-        <p id="message" aria-live="polite">Trzy symbole wygrywają 5x, para 2x.</p>
-        <p>Gra używa wyłącznie fikcyjnych żetonów.</p>
-    </main>
+                <article class="game-card game-card-coming-soon">
+                    <div class="game-card-art" aria-hidden="true">
+                        <span>?</span><span>?</span><span>?</span>
+                    </div>
+                    <div class="game-card-body">
+                        <div>
+                            <p class="game-type">Wkrótce</p>
+                            <h2>Nowa gra</h2>
+                        </div>
+                        <span class="coming-soon">Później</span>
+                    </div>
+                </article>
+            </section>
+        </main>
+    </div>
 </body>
 </html>
