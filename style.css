@@ -23,6 +23,100 @@ body {
 
 button, input { font: inherit; }
 
+.site-nav {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: clamp(18px, 3vw, 42px);
+    width: min(1200px, 100%);
+    min-height: 64px;
+    margin: 0 auto 30px;
+    padding: 12px 18px;
+    border: 1px solid rgba(213, 164, 58, .55);
+    border-radius: 8px;
+    color: var(--paper);
+    background: rgba(8, 54, 37, .82);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .2);
+    font-family: "Trebuchet MS", sans-serif;
+}
+
+.site-brand {
+    flex: 0 0 auto;
+    color: var(--gold);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 19px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.site-brand span { color: var(--paper); }
+
+.site-nav-links,
+.site-nav-actions {
+    display: flex;
+    align-items: center;
+    gap: clamp(12px, 2vw, 26px);
+}
+
+.site-nav-links { margin-left: auto; }
+
+.site-nav-links a {
+    color: #e4e0d5;
+    font-size: 13px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.site-nav-links a:hover,
+.site-nav-links a:focus-visible,
+.site-nav-links a[aria-current="page"] {
+    color: #ffe187;
+}
+
+.site-nav-actions { flex: 0 0 auto; }
+
+.site-nav-actions button {
+    min-height: 38px;
+    padding: 0 13px;
+    border: 1px solid rgba(243, 240, 232, .5);
+    border-radius: 5px;
+    color: var(--paper);
+    background: transparent;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.site-nav-actions .register-button {
+    border-color: var(--gold);
+    color: #17140e;
+    background: var(--gold);
+}
+
+.site-nav-actions button:hover { filter: brightness(1.1); }
+
+.nav-notice {
+    display: none;
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 18px;
+    z-index: 2;
+    max-width: min(320px, calc(100vw - 56px));
+    margin: 0;
+    padding: 10px 14px;
+    border: 1px solid rgba(213, 164, 58, .7);
+    border-radius: 5px;
+    color: var(--paper);
+    background: #083625;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, .24);
+    font-size: 12px;
+}
+
+.nav-notice:not(:empty) {
+    display: block;
+}
+
 .casino-shell {
     width: min(680px, 100%);
     margin: 0 auto;
@@ -315,6 +409,43 @@ body:has(.lobby-shell) {
 .game-card-coming-soon .game-card-art span { font-family: Georgia, serif; color: #777268; }
 .coming-soon { font-family: "Trebuchet MS", sans-serif; font-size: 12px; }
 
+.construction-panel {
+    width: min(760px, 100%);
+    margin: 0 auto;
+    padding: clamp(28px, 6vw, 64px);
+    border: 1px solid rgba(213, 164, 58, .75);
+    border-radius: 8px;
+    background: var(--paper);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, .28);
+    text-align: center;
+}
+
+.construction-panel .eyebrow { color: var(--green); }
+
+.construction-panel h1 {
+    margin: 12px 0;
+    color: var(--ink);
+}
+
+.construction-panel p:last-of-type {
+    margin: 0;
+    color: #625e54;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.construction-panel a {
+    display: inline-block;
+    margin-top: 24px;
+    padding: 12px 18px;
+    border-radius: 5px;
+    color: white;
+    background: var(--green);
+    font-family: "Trebuchet MS", sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+}
+
 #celebration {
     position: fixed;
     inset: 0;
@@ -349,6 +480,24 @@ body:has(.lobby-shell) {
 
 @media (max-width: 520px) {
     body { padding: 22px 12px; }
+    .site-nav {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 24px;
+        padding: 12px;
+    }
+    .site-nav-links {
+        order: 3;
+        flex-basis: 100%;
+        justify-content: space-between;
+        gap: 8px;
+        padding-top: 8px;
+        border-top: 1px solid rgba(243, 240, 232, .18);
+    }
+    .site-nav-links a { font-size: 12px; }
+    .site-nav-actions { gap: 6px; }
+    .site-nav-actions button { min-height: 34px; padding-inline: 8px; font-size: 11px; }
     .casino-header { align-items: center; }
     .game-grid { grid-template-columns: 1fr; }
     .balance-box {
@@ -366,4 +515,10 @@ body:has(.lobby-shell) {
         padding: 0 14px 16px;
     }
     .message { padding-inline: 14px; }
+}
+
+@media (min-width: 521px) and (max-width: 760px) {
+    .site-nav { flex-wrap: wrap; gap: 12px 20px; }
+    .site-nav-links { order: 3; flex-basis: 100%; justify-content: center; }
+    .site-nav-actions { margin-left: auto; }
 }

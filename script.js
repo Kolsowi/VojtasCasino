@@ -11,6 +11,13 @@ const spinButton = document.querySelector("#spin");
 const reelsContainer = document.querySelector("#reels");
 const celebration = document.querySelector("#celebration");
 const casinoClock = document.querySelector("#casino-clock");
+const navNotice = document.querySelector(".nav-notice");
+
+document.querySelectorAll("[data-auth-action]").forEach((button) => {
+    button.addEventListener("click", () => {
+        navNotice.textContent = `Funkcja ${button.dataset.authAction} będzie dostępna wkrótce.`;
+    });
+});
 
 const updateClock = () => {
     if (!casinoClock) return;

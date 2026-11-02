@@ -9,6 +9,19 @@
     <script src="script.js" defer></script>
 </head>
 <body>
+    <nav class="site-nav" aria-label="Menu główne">
+        <a class="site-brand" href="home.html">Vojtas <span>Casino</span></a>
+        <div class="site-nav-links">
+            <a href="home.html">Strona główna</a>
+            <a href="index.html#automaty" aria-current="page">Automaty</a>
+            <a href="roulette.html">Ruletka</a>
+        </div>
+        <div class="site-nav-actions">
+            <button type="button" class="login-button" data-auth-action="logowania">Zaloguj się</button>
+            <button type="button" class="register-button" data-auth-action="rejestracji">Zarejestruj się</button>
+        </div>
+        <p class="nav-notice" role="status" aria-live="polite"></p>
+    </nav>
     <div class="casino-shell">
         <header class="casino-header">
             <div>
