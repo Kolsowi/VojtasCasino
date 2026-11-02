@@ -12,11 +12,57 @@ const reelsContainer = document.querySelector("#reels");
 const celebration = document.querySelector("#celebration");
 const casinoClock = document.querySelector("#casino-clock");
 const navNotice = document.querySelector(".nav-notice");
+const authOverlay = document.querySelector(".auth-overlay");
+const authTitle = document.querySelector("#auth-title");
+const authDescription = document.querySelector(".auth-description");
+const authSubmit = document.querySelector(".auth-submit");
+const authEmail = document.querySelector("#auth-email");
+
+const setAuthMode = (mode) => {
+    if (!authOverlay) return;
+    const isRegister = mode === "register";
+    authTitle.textContent = isRegister ? "Utwórz konto" : "Zaloguj się";
+    authDescription.textContent = isRegister
+        ? "Dołącz do Vojtas Casino"
+        : "Zaloguj się na swoje konto";
+    authSubmit.textContent = isRegister ? "Zarejestruj się" : "Zaloguj się";
+    authOverlay.querySelectorAll("[data-auth-mode]").forEach((button) => {
+        const isActive = button.dataset.authMode === mode;
+        button.classList.toggle("is-active", isActive);
+        if (button.hasAttribute("aria-pressed")) {
+            button.setAttribute("aria-pressed", String(isActive));
+        }
+    });
+};
 
 document.querySelectorAll("[data-auth-action]").forEach((button) => {
     button.addEventListener("click", () => {
-        navNotice.textContent = `Funkcja ${button.dataset.authAction} będzie dostępna wkrótce.`;
+        if (!authOverlay) {
+            navNotice.textContent = `Funkcja ${button.dataset.authAction} będzie dostępna wkrótce.`;
+            return;
+        }
+        setAuthMode(button.dataset.authAction === "rejestracji" ? "register" : "login");
+        authOverlay.hidden = false;
+        authEmail.focus();
     });
+});
+
+authOverlay?.querySelectorAll("[data-auth-mode]").forEach((button) => {
+    button.addEventListener("click", () => setAuthMode(button.dataset.authMode));
+});
+
+authOverlay?.querySelector(".auth-close")?.addEventListener("click", () => {
+    authOverlay.hidden = true;
+});
+
+authOverlay?.addEventListener("click", (event) => {
+    if (event.target === authOverlay) authOverlay.hidden = true;
+});
+
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && authOverlay && !authOverlay.hidden) {
+        authOverlay.hidden = true;
+    }
 });
 
 const updateClock = () => {

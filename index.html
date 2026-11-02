@@ -22,6 +22,31 @@
         </div>
         <p class="nav-notice" role="status" aria-live="polite"></p>
     </nav>
+    <div class="auth-overlay" hidden>
+        <section class="auth-panel" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+            <button class="auth-close" type="button" aria-label="Zamknij okno">X</button>
+            <p class="eyebrow">Vojtas Casino</p>
+            <h1 id="auth-title">Zaloguj się</h1>
+            <p class="auth-description">Zaloguj się lub utwórz konto</p>
+
+            <div class="auth-tabs" aria-label="Wybierz opcję">
+                <button class="is-active" type="button" data-auth-mode="login" aria-pressed="true">Logowanie</button>
+                <button type="button" data-auth-mode="register" aria-pressed="false">Rejestracja</button>
+            </div>
+
+            <form class="auth-form">
+                <label for="auth-email">Adres e-mail</label>
+                <input id="auth-email" type="email" placeholder="ty@przyklad.pl" autocomplete="email">
+
+                <label for="auth-password">Hasło</label>
+                <input id="auth-password" type="password" placeholder="Wpisz hasło" autocomplete="current-password">
+
+                <button class="auth-submit" type="button">Zaloguj się</button>
+            </form>
+
+            <p class="auth-footnote">Nie masz jeszcze konta? <button type="button" data-auth-mode="register">Zarejestruj się</button></p>
+        </section>
+    </div>
     <div class="casino-shell lobby-shell">
         <header class="casino-header lobby-header">
             <div>
